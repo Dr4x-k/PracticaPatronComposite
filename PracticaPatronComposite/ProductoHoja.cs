@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace PracticaPatronComposite {
     public class ProductoHoja : Componente {
-        public int CantidadProducto {  get; set; }
         public string UnidadProducto {  set; get; }
         
-        public ProductoHoja(int id, string nombre, double precio, int cantidad, string unidad) : base(id, nombre, precio)  {
-            CantidadProducto = cantidad;
+        public ProductoHoja(string nombre, double precio, string unidad) : base(nombre, precio)  {
             UnidadProducto = unidad;
+        }
+
+        public string obtenerUnidad() {
+            return UnidadProducto;
+        }
+
+        public void establecerCantidad(int unidad) {
+            this.UnidadProducto += unidad;
         }
     }
 }

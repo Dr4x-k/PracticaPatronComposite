@@ -8,20 +8,25 @@ namespace PracticaPatronComposite {
     public class CarritoCompuesto : Componente {
         private List<Componente> productos = new List<Componente>();
         
-        public double Total { 
+        public double obtenerTotal { 
             get {
                 double total = 0;
-                foreach (var producto in productos) {
+                foreach (Componente producto in productos) {
 
                     if (producto.GetType().Name == "CarritoCompuesto")
-                        total += ((CarritoCompuesto) producto).Total;
+                        total += ((CarritoCompuesto) producto).obtenerTotal;
                     else
-                        total += producto.PrecioProducto;
+                        total += producto.obtenerPrecio();
                 }
 
                 return total;
             }
                 
+        }
+
+
+        public void establecerPrecio(double precio) {
+            throw new InvalidOperationException();
         }
 
         public void Agregar(Componente oElemento) {
@@ -32,7 +37,7 @@ namespace PracticaPatronComposite {
             productos.Remove(oElemento);
         }
 
-        public CarritoCompuesto(int id, string nombre, double precio = 0) : base(id, nombre, precio) { 
+        public CarritoCompuesto(string nombre, double precio = 0) : base(nombre, precio) { 
             
         }
     }
